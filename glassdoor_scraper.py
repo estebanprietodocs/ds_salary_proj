@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jul 10 10:25:35 2020
+https://github.com/arapfaik/scraping-glassdoor-selenium
 
-@author: Mumes
+@author: Ömer Sakarya
+
 """
 
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
@@ -25,9 +26,8 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
     driver = webdriver.Chrome(executable_path=path, options=options)
     driver.set_window_size(1120, 1000)
 
-    url= 'https://www.glassdoor.com.ar/Empleo/empleos.htm?sc.generalKeyword=%22data+analyst%22&sc.locationSeoString=espa%C3%B1a&locId=219&locT=N&sc.pageNumber=2'
     #url = 'https://www.glassdoor.com.ar/Empleo/empleos.htm?sc.generalKeyword=%22data+analyst%22&sc.locationSeoString=barcelona&locId=2547194&locT=C'
-    #url = 'https://www.glassdoor.com/Job/jobs.htm?sc.keyword="' + keyword + '"&jobType=all&fromAge=-1&minSalary=0&includeNoSalaryJobs=true&radius=100&cityId=-1&minRating=0.0&industryId=-1&sgocId=-1&seniorityType=all&companyId=-1&employerSizes=0&applicationType=0&remoteWorkType=0'
+    url = 'https://www.glassdoor.com/Job/jobs.htm?sc.keyword=\"'+ keyword +'\"&locT=C&locId=1147401&locKeyword=San%20Francisco,%20CA&jobType=all&fromAge=-1&minSalary=0&includeNoSalaryJobs=true&radius=100&cityId=-1&minRating=0.0&industryId=-1&sgocId=-1&seniorityType=all&companyId=-1&employerSizes=0&applicationType=0&remoteWorkType=0'
     driver.get(url)
     jobs = []
 
@@ -165,19 +165,19 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
                 print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
             jobs.append({"Job Title" : job_title,
-            #"Salary Estimate" : salary_estimate,
+            "Salary Estimate" : salary_estimate,
             "Job Description" : job_description,
             "Rating" : rating,
             "Company Name" : company_name,
             "Location" : location,
-            #"Headquarters" : headquarters,
-            #"Size" : size,
-            #"Founded" : founded,
-            #"Type of ownership" : type_of_ownership,
-            #"Industry" : industry,
+            "Headquarters" : headquarters,
+            "Size" : size,
+            "Founded" : founded,
+            "Type of ownership" : type_of_ownership,
+            "Industry" : industry,
             "Sector" : sector,
-            #"Revenue" : revenue,
-            #"Competitors" : competitors
+            "Revenue" : revenue,
+            "Competitors" : competitors
             })
             #add job to jobs
 
