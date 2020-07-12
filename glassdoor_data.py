@@ -10,6 +10,6 @@ import pandas as pd
 
 path = "C:/Users/Mumes/Documents/ds_salary_proj/chromedriver"
 
-df = gs.get_jobs('data scientist', 10, False, path, 15)
+df = gs.get_jobs('data scientist', 500 ,False, path, 15)
 
 df.to_csv(r'C:/Users/Mumes/Documents/ds_salary_proj/glassdoor_jobs.csv', index= False)
