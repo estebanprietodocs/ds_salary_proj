@@ -33,6 +33,8 @@ df['company_txt'] = df.apply(lambda x: x['Company Name'] if x['Rating']<0 else x
 df['job_state'] = df['Location'].apply(lambda x: x.split (',')[1])
 
 #age of company
+df['age'] = df['Founded'].apply(lambda x: x if x<1 else 2020 - x)
+
 #parsing of job description
 df['python_yn'] = df['Job Description'].apply(lambda x: 1 if 'python' in x.lower() else 0) 
 df['r_studio_yn'] = df['Job Description'].apply(lambda x: 1 if 'r studio' in x.lower() or 'r-studio' in x.lower()  else 0)
