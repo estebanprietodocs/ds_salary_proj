@@ -47,15 +47,15 @@ np.mean(cross_val_score(lm, X_train,y_train,scoring = 'neg_mean_absolute_error',
 #laso regression
 lml = Lasso(alpha=0.13)
 lml.fit(X_train,y_train)
-np.mean(cross_val_score(lm_l, X_train,y_train,scoring = 'neg_mean_absolute_error',cv =3))
+np.mean(cross_val_score(lml, X_train,y_train,scoring = 'neg_mean_absolute_error',cv =3))
 
 alpha =[]
 error = []
 
 for i in range(1,500):
     alpha.append(i/100)
-    lm_l = Lasso(alpha=(i/100))
-    error.append(np.mean(cross_val_score(lm_l, X_train,y_train,scoring = 'neg_mean_absolute_error',cv =3)))
+    lml = Lasso(alpha=(i/100))
+    error.append(np.mean(cross_val_score(lml, X_train,y_train,scoring = 'neg_mean_absolute_error',cv =3)))
 plt.plot(alpha,error)
  
 #random forest
@@ -81,3 +81,20 @@ from sklearn.metrics import mean_absolute_error
 mean_absolute_error(y_test, tpred_lm)
 mean_absolute_error(y_test, tpred_lml)
 mean_absolute_error(y_test, tpred_rf)
+
+mean_absolute_error(y_test,(tpred_lm + tpred_rf)/2)
+
+
+import pickle
+pickl = {'model': gs.best_estimator_}
+pickle.dump( pickl, open( 'model_file' + ".p", "wb" ) )
+
+
+file_name = "model_file.p"
+with open(file_name, 'rb') as pickled:
+        data = pickle.load(pickled)
+        model = data['model']
+
+model.predict(X_test.iloc[1,:].values.reshape(1,-1))
+
+list(X_test.iloc[1,:])
